@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 
 class CategoryProductController extends Controller
 {
     public function index()
     {
-        $categoryProducts = Category::all();
+        $categoryProducts = CategoryProduct::all();
         return response()->json($categoryProducts);
     }
 
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = CategoryProduct::findOrFail($id);
         return response()->json($category);
     }
 
     public function store(Request $request)
     {
-        $category = Category::create($request->all());
+        $category = CategoryProduct::create($request->all());
         return response()->json($category, 201);
     }
 
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
+        $category = CategoryProduct::findOrFail($id);
         $category->update($request->all());
         return response()->json($category, 200);
     }
